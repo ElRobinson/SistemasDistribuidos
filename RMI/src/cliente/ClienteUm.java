@@ -9,19 +9,25 @@ package cliente;
  *
  * @author luisrobinson
  */
+import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import com.sun.net.httpserver.HttpServer;
+import handlers.EscritoresHandler;
+import handlers.LeitoresHandler;
+import handlers.RootHandler;
 import rmi.Servico;
 import rmi.ServicoListener;
 
 public class ClienteUm implements ServicoListener{
-   public static void main(String[] args) {
+   public ClienteUm() {
 		try {
-			String nomeServico = "MeuServico";
-			int porta = 12345;
+			String nomeServico = "ServidorDeNoticias";
+			int porta = 1234;
 
 			ServicoListener ClienteUm = new ClienteUm();
 			ServicoListener clienteAdistribuido = (ServicoListener) UnicastRemoteObject.exportObject(ClienteUm, 0);
@@ -32,11 +38,12 @@ public class ClienteUm implements ServicoListener{
 
 			double valor = 20;
 			System.out.println("Cliente A enviando: " + valor);
-			servicoRemoto.setX(valor);
+//			servicoRemoto.setX(valor);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 
 	@Override
 	public void calculoEfetuado(double resultado) throws RemoteException {

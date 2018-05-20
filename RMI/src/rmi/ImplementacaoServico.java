@@ -35,6 +35,7 @@ class ImplementacaoServico implements Servico {
 	public void setX(double valor) throws RemoteException {
 		valorX = valor;
 		setouX = true;
+		System.out.println("saldkfmoaisdfioasdf");
 		verifica();
 	}
 

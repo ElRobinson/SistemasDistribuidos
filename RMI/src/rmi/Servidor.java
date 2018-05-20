@@ -18,8 +18,8 @@ import rmi.Servico;
 public class Servidor {
     public static void main(String args[]) {
 		try {
-			String nomeServico = "Servidor de Noticias";
-			int porta = 12345;
+			String nomeServico = "ServidorDeNoticias";
+			int porta = 1234;
 
 			Servico servico = new ImplementacaoServico();
 			Servico servicoDistribuido = (Servico) UnicastRemoteObject.exportObject(servico, 0);
