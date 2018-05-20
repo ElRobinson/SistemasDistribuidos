@@ -20,8 +20,8 @@ import rmi.ServicoListener;
 public class ClienteDois implements ServicoListener{
    public static void main(String[] args) {
 		try {
-			String nomeServico = "MeuServico";
-			int porta = 12345;
+			String nomeServico = "ServidorDeNoticias";
+			int porta = 1234;
 
 			ServicoListener ClienteDois = new ClienteDois();
 			ServicoListener clienteAdistribuido = (ServicoListener) UnicastRemoteObject.exportObject(ClienteDois, 0);
