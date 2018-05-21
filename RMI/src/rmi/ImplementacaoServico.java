@@ -13,51 +13,38 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import crud.Noticia;
 import rmi.Servico;
 import rmi.ServicoListener;
 
 class ImplementacaoServico implements Servico {
 
 	private final List<ServicoListener> listeners = new ArrayList<>();
+	private final List<Noticia> noticias = new ArrayList<>();
 
-	private boolean setouX;
-	private boolean setouY;
-
-	private double valorX;
-	private double valorY;
 
 	@Override
 	public void addListener(ServicoListener listener) throws RemoteException {
 		listeners.add(listener);
 	}
 
-	@Override
-	public void setX(double valor) throws RemoteException {
-		valorX = valor;
-		setouX = true;
-		System.out.println("saldkfmoaisdfioasdf");
-		verifica();
-	}
+    @Override
+    public void getNoticia() {
+	    Noticia noticia;
+	    if(noticias.size() == 0){
+	        noticia = null;
+        } else {
+            noticia = noticias.get(noticias.size() - 1);
+        }
 
-	@Override
-	public void setY(double valor) throws RemoteException {
-		valorY = valor;
-		setouY = true;
-		verifica();
-	}
+        for (ServicoListener listener : listeners) {
+            try {
+                listener.noticiaRecebida(new Noticia("Test"));
+//                listener.noticiaRecebida(noticia);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-	private void verifica() {
-		if (setouX && setouY) {
-			double resultado = valorX + valorY;
-			for (ServicoListener listener : listeners) {
-				try {
-					listener.calculoEfetuado(resultado);
-				} catch (RemoteException e) {
-					e.printStackTrace();
-				}
-			}
-			setouX = false;
-			setouY = false;
-		}
-	}
 }

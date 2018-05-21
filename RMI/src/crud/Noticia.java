@@ -12,7 +12,6 @@ package crud;
 public class Noticia {
     public int id;
     public String texto;
-    public Noticia noticia;
 
     public int getId() {
         return id;
@@ -26,17 +25,9 @@ public class Noticia {
         this.texto = texto;
     }
 
-    public Noticia getNoticia() {
-        return noticia;
-    }
 
-    public void setNoticia(Noticia noticia) {
-        this.noticia = noticia;
-    }
-
-    public Noticia(String texto, Noticia noticia) {
+    public Noticia(String texto) {
         this.texto = texto;
-        this.noticia = noticia;
         id += 1;
     }
     
