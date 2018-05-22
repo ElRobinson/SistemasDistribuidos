@@ -10,5 +10,24 @@ package crud;
  * @author luisrobinson
  */
 public class Assunto {
+    public String Assunto;
+    public int id;
+
+    public String getAssunto() {
+        return Assunto;
+    }
+
+    public void setAssunto(String Assunto) {
+        this.Assunto = Assunto;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Assunto(String Assunto) {
+        this.Assunto = Assunto;
+        id += 1;
+    }
     
 }
