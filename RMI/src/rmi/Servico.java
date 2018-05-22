@@ -9,6 +9,8 @@ import crud.Noticia;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
@@ -16,7 +18,11 @@ import java.rmi.RemoteException;
  */
 public interface Servico extends Remote {
 
-	void addListener(ServicoListener listener) throws RemoteException;
+	void addListener(ServicoListener listener, String topico) throws RemoteException;
 
-	void getNoticia() throws RemoteException;
+	Noticia getUltimaNoticia() throws RemoteException;
+
+    List<Noticia> getNoticias(LocalDateTime start, LocalDateTime end, String nomeTopico) throws RemoteException;
+
+    void adicionarNoticia(Noticia noticia, String topico) throws RemoteException;
 }
