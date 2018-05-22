@@ -10,5 +10,6 @@ package crud;
  * @author luisrobinson
  */
 public class Usuario {
-    
+    int id;
+    String nome;
 }
