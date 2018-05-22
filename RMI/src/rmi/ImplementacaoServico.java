@@ -14,6 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -25,7 +26,7 @@ import rmi.ServicoListener;
 public class ImplementacaoServico extends UnicastRemoteObject implements Servico {
 
     private List<Topico> topicos = new ArrayList<>();
-    private Noticia ultimaNoticia;
+    private HashMap<String, Noticia> ultimaNoticia = new HashMap<>();
 
 
     public ImplementacaoServico() throws RemoteException {
@@ -40,8 +41,8 @@ public class ImplementacaoServico extends UnicastRemoteObject implements Servico
 	}
 
     @Override
-    public Noticia getUltimaNoticia() throws RemoteException {
-	    return ultimaNoticia;
+    public Noticia getUltimaNoticia(String topico) throws RemoteException {
+	    return ultimaNoticia.get(topico);
     }
     private void mockTopicos(){
         Noticia n1 = new Noticia("N1");
@@ -52,7 +53,7 @@ public class ImplementacaoServico extends UnicastRemoteObject implements Servico
         topico.nome = "Topico 1";
         topico.noticias.add(n1);
         topico.noticias.add(n2);
-        ultimaNoticia = n2;
+        ultimaNoticia.put(topico.nome, n1);
 
         topicos.add(topico);
     }

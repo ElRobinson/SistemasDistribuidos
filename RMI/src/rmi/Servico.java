@@ -20,7 +20,7 @@ public interface Servico extends Remote {
 
 	void addListener(ServicoListener listener, String topico) throws RemoteException;
 
-	Noticia getUltimaNoticia() throws RemoteException;
+	Noticia getUltimaNoticia(String topico) throws RemoteException;
 
     List<Noticia> getNoticias(LocalDateTime start, LocalDateTime end, String nomeTopico) throws RemoteException;
 
