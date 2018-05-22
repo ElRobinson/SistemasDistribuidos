@@ -25,4 +25,10 @@ public interface Servico extends Remote {
     List<Noticia> getNoticias(LocalDateTime start, LocalDateTime end, String nomeTopico) throws RemoteException;
 
     void adicionarNoticia(Noticia noticia, String topico) throws RemoteException;
+
+    void adicionarTopico(Topico topico) throws RemoteException;
+
+    List<Topico> getTopicos() throws RemoteException;
+
+    List<Noticia> getTodasNoticias() throws RemoteException;
 }

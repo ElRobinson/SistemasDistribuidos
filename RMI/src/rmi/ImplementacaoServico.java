@@ -30,7 +30,7 @@ public class ImplementacaoServico extends UnicastRemoteObject implements Servico
 
 
     public ImplementacaoServico() throws RemoteException {
-        mockTopicos();
+//        mockTopicos();
     }
 
 
@@ -76,6 +76,7 @@ public class ImplementacaoServico extends UnicastRemoteObject implements Servico
         Topico topico1 = topicos.stream()
                 .filter(t -> t.nome.equals(topico)).findFirst().get();
         topico1.noticias.add(noticia);
+        ultimaNoticia.put(topico, noticia);
         topico1.listeners.forEach(l -> {
             try {
                 l.noticiaRecebida(noticia);
@@ -83,6 +84,23 @@ public class ImplementacaoServico extends UnicastRemoteObject implements Servico
                 e.printStackTrace();
             }
         });
+    }
+
+    public void adicionarTopico(Topico topico) throws RemoteException{
+        boolean topicoEncontrado = topicos.stream().filter(t -> t.nome.equals(topico.nome)).findFirst().isPresent();
+        if(!topicoEncontrado){
+            topicos.add(topico);
+        }
+    }
+
+    @Override
+    public List<Topico> getTopicos() throws RemoteException {
+        return topicos;
+    }
+
+    @Override
+    public List<Noticia> getTodasNoticias() throws RemoteException {
+        return topicos.stream().flatMap(topico -> topico.noticias.stream()).collect(Collectors.toList());
     }
 
 }

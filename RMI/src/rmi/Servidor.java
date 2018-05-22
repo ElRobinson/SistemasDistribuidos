@@ -11,12 +11,6 @@ package rmi;
  */
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.List;
-
-import rmi.Servico;
-
 public class Servidor {
     public static void main(String args[]) {
 		try {

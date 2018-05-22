@@ -91,7 +91,7 @@ public class ClienteUm extends UnicastRemoteObject implements ServicoListener {
             String topico = scanner.nextLine();
             try {
                 Noticia noticia = servico.getUltimaNoticia(topico);
-                System.out.println(noticia);
+                System.out.println(noticia.texto);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -202,6 +202,7 @@ public class ClienteUm extends UnicastRemoteObject implements ServicoListener {
 
     @Override
     public void noticiaRecebida(Noticia noticia) throws RemoteException {
-        System.out.println("Servidor devolveu para Cliente Uma notícia " + noticia.getTexto());
+        System.out.println("****** Noticia Recebida ******");
+        System.out.println(noticia.getTexto());
     }
 }
